@@ -3,7 +3,7 @@ $(function(){
 /*buscemiStorage[id, filename, click counter]
 */
   var model ={
-    curentBuscemi: 0,
+    currentBuscemi: null,
     buscemis: [
         {
           name: "buscemi1",
@@ -35,25 +35,46 @@ $(function(){
 
   var octopus = {
     init: function() {
+      model.currentBuscemi = model.buscemis[0];
       view.init();
     },
 
     getBuscemis: function() {
       return model.buscemis;
+    },
+
+    getCurrentBuscemi: function() {
+      return model.currentBuscemi;
     }
   };
 
   var view = {
     init: function(){
-      var element;
       this.sidebar = document.getElementById('sidebar');
+      this.buscemiName = document.getElementById('buscemi-name');
+      this.mainImg = document.getElementById('mainImg');
+      this.counter = document.getElementById('counter');
+      this.renderSidebar();
+      this.renderMainImg();
+    },
+
+    renderSidebar: function(){
+      var element;
       var buscemis = octopus.getBuscemis();
       buscemis.forEach(function(buscemi) {
         element = document.createElement('img');
         element.src = "img/" + buscemi.url;
         element.className = "sidebar-img";
         this.sidebar.appendChild(element);
-      });
+      })
+    },
+
+    renderMainImg: function(){
+      var cBuscemi = octopus.getCurrentBuscemi();
+      console.log(cBuscemi)
+      this.buscemiName.textContent = cBuscemi.name;
+      this.mainImg.src = "img/" + cBuscemi.url;
+      this.counter.textContent = cBuscemi.clickCount + " Times Clicked";
     }
   };
 
