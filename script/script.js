@@ -2,6 +2,7 @@ $(function(){
 
 /*buscemiStorage[id, filename, click counter]
 */
+
   var model ={
     currentBuscemi: null,
     buscemis: [
@@ -45,6 +46,14 @@ $(function(){
 
     getCurrentBuscemi: function() {
       return model.currentBuscemi;
+    },
+
+    setcurrentBuscemi: function(buscemi) {
+      model.currentBuscemi = buscemi;
+    },
+
+    incrementCounter: function(){
+      model.currentBuscemi.counter++;
     }
   };
 
@@ -65,6 +74,12 @@ $(function(){
         element = document.createElement('img');
         element.src = "img/" + buscemi.url;
         element.className = "sidebar-img";
+        element.addEventListener('click', function(buscemiCopy){
+          return function(){
+            octopus.setcurrentBuscemi(buscemiCopy);
+            view.renderMainImg();
+          }
+        }(buscemi));
         this.sidebar.appendChild(element);
       })
     },
@@ -75,6 +90,7 @@ $(function(){
       this.buscemiName.textContent = cBuscemi.name;
       this.mainImg.src = "img/" + cBuscemi.url;
       this.counter.textContent = cBuscemi.clickCount + " Times Clicked";
+      
     }
   };
 
