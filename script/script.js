@@ -38,6 +38,7 @@ $(function(){
     init: function() {
       model.currentBuscemi = model.buscemis[0];
       view.init();
+      console.log(this.getCurrentBuscemi());
     },
 
     getBuscemis: function() {
@@ -48,21 +49,32 @@ $(function(){
       return model.currentBuscemi;
     },
 
-    setcurrentBuscemi: function(buscemi) {
+    setCurrentBuscemi: function(buscemi) {
       model.currentBuscemi = buscemi;
     },
 
     incrementCounter: function(){
-      model.currentBuscemi.counter++;
+      model.currentBuscemi.clickCount++;
+      console.log(this.getCurrentBuscemi.clickCount);
     }
   };
 
   var view = {
     init: function(){
+      //Vars for HTML elements for later use.
       this.sidebar = document.getElementById('sidebar');
       this.buscemiName = document.getElementById('buscemi-name');
       this.mainImg = document.getElementById('mainImg');
       this.counter = document.getElementById('counter');
+
+      var cBuscemi = octopus.getCurrentBuscemi();
+      this.buscemiName.textContent = cBuscemi.name;
+      this.mainImg.src = "img/" + cBuscemi.url;
+      this.counter.textContent = cBuscemi.clickCount + " Times Clicked";
+      this.mainImg.addEventListener('click', function(){
+        octopus.incrementCounter();
+        view.renderMainImg();
+      })
       this.renderSidebar();
       this.renderMainImg();
     },
@@ -73,10 +85,10 @@ $(function(){
       buscemis.forEach(function(buscemi) {
         element = document.createElement('img');
         element.src = "img/" + buscemi.url;
-        element.className = "sidebar-img";
+        element.className = "sidebar-img ";
         element.addEventListener('click', function(buscemiCopy){
           return function(){
-            octopus.setcurrentBuscemi(buscemiCopy);
+            octopus.setCurrentBuscemi(buscemiCopy);
             view.renderMainImg();
           }
         }(buscemi));
@@ -86,11 +98,9 @@ $(function(){
 
     renderMainImg: function(){
       var cBuscemi = octopus.getCurrentBuscemi();
-      console.log(cBuscemi)
       this.buscemiName.textContent = cBuscemi.name;
       this.mainImg.src = "img/" + cBuscemi.url;
       this.counter.textContent = cBuscemi.clickCount + " Times Clicked";
-      
     }
   };
 
