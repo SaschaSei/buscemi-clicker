@@ -67,6 +67,7 @@ $(function(){
       this.mainImg = document.getElementById('mainImg');
       this.counter = document.getElementById('counter');
 
+      //Sets main image and texts. Sets event listener for main image.
       var cBuscemi = octopus.getCurrentBuscemi();
       this.buscemiName.textContent = cBuscemi.name;
       this.mainImg.src = "img/" + cBuscemi.url;
@@ -82,6 +83,8 @@ $(function(){
     renderSidebar: function(){
       var element;
       var buscemis = octopus.getBuscemis();
+
+      //Iterates through model and creates sidebar images including event listeners
       buscemis.forEach(function(buscemi) {
         element = document.createElement('img');
         element.src = "img/" + buscemi.url;
@@ -97,6 +100,8 @@ $(function(){
     },
 
     renderMainImg: function(){
+
+      //Gets current buscemi and sets properties of the main image and text
       var cBuscemi = octopus.getCurrentBuscemi();
       this.buscemiName.textContent = cBuscemi.name;
       this.mainImg.src = "img/" + cBuscemi.url;
