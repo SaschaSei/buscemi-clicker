@@ -60,6 +60,8 @@ $(function(){
   };
 
   var view = {
+    inAdminMode: false,
+
     init: function(){
       //Vars for HTML elements for later use.
       this.sidebar = document.getElementById('sidebar');
@@ -106,6 +108,14 @@ $(function(){
       this.buscemiName.textContent = cBuscemi.name;
       this.mainImg.src = "img/" + cBuscemi.url;
       this.counter.textContent = cBuscemi.clickCount + " Times Clicked";
+    },
+
+    renderAdminMode: function(){
+
+    },
+
+    unrenderAdminMode: function(){
+
     }
   };
 
