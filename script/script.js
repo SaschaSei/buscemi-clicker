@@ -140,8 +140,9 @@ $(function(){
     renderAdminMode: function(inAdminMode){
       this.formParent = document.getElementById('formParent');
       if(!inAdminMode){
-        form = document.createElement('form');
-        form.id = "form";
+        formDiv = document.createElement('div');
+        formDiv.className = 'col-12';
+        formDiv.id = "form";
 
         nameLbl = document.createElement('label');
         nameLbl.textContent = "Name: ";
@@ -174,18 +175,18 @@ $(function(){
         submitBtn.textContent = 'Submit';
 
 
-        form.appendChild(nameLbl);
-        form.appendChild(nameFld);
-        form.appendChild(urlLbl);
-        form.appendChild(urlFld);
-        form.appendChild(counterLbl);
-        form.appendChild(counterFld);
-        form.appendChild(cancelBtn);
-        form.appendChild(submitBtn);
+        formDiv.appendChild(nameLbl);
+        formDiv.appendChild(nameFld);
+        formDiv.appendChild(urlLbl);
+        formDiv.appendChild(urlFld);
+        formDiv.appendChild(counterLbl);
+        formDiv.appendChild(counterFld);
+        formDiv.appendChild(cancelBtn);
+        formDiv.appendChild(submitBtn);
 
-        this.formParent.appendChild(form);
+        this.formParent.appendChild(formDiv);
       } else {
-        this.formParent.removeChild(form);
+        this.formParent.removeChild(formDiv);
       }
     }
   };
