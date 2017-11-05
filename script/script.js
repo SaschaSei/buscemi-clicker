@@ -60,6 +60,10 @@ $(function(){
       console.log(this.getCurrentBuscemi.clickCount);
     },
 
+    getAdminMode: function(){
+      return this.inAdminMode;
+    },
+
     switchAdminMode: function(){
      if(this.inAdminMode){
        this.inAdminMode = false;
@@ -81,6 +85,7 @@ $(function(){
 
       this.adminBtn.addEventListener('click', function(){
         console.log(octopus.inAdminMode);
+        view.renderAdminMode(octopus.getAdminMode());
         octopus.switchAdminMode();
       });
 
@@ -125,12 +130,17 @@ $(function(){
       this.counter.textContent = cBuscemi.clickCount + " Times Clicked";
     },
 
-    renderAdminMode: function(){
-
-    },
-
-    unrenderAdminMode: function(){
-
+    //Renders or removes admin move depending on "inAdminMode" boolean.
+    renderAdminMode: function(inAdminMode){
+      this.formParent = document.getElementById('formParent');
+      if(!inAdminMode){
+        form = document.createElement('p');
+        form.textContent = "It works!";
+        form.id = "form";
+        this.formParent.appendChild(form);
+      } else {
+        this.formParent.removeChild(form);
+      }
     }
   };
 
