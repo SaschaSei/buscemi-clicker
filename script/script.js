@@ -55,6 +55,12 @@ $(function(){
       model.currentBuscemi = buscemi;
     },
 
+    updateCurrentBuscemi: function(name, url, counter){
+      model.currentBuscemi.name = name;
+      model.currentBuscemi.url = url;
+      model.currentBuscemi.clickCount = counter;
+    },
+
     incrementCounter: function(){
       model.currentBuscemi.clickCount++;
       console.log(this.getCurrentBuscemi.clickCount);
