@@ -134,9 +134,49 @@ $(function(){
     renderAdminMode: function(inAdminMode){
       this.formParent = document.getElementById('formParent');
       if(!inAdminMode){
-        form = document.createElement('p');
-        form.textContent = "It works!";
+        form = document.createElement('form');
         form.id = "form";
+
+        nameLbl = document.createElement('label');
+        nameLbl.textContent = "Name: ";
+
+        nameFld = document.createElement('input');
+        nameFld.type = "textField";
+        nameFld.value = octopus.getCurrentBuscemi().name;
+
+        urlLbl = document.createElement('label');
+        urlLbl.textContent = "URL: ";
+
+
+        urlFld = document.createElement('input');
+        urlFld.type = "textField";
+        urlFld.value = octopus.getCurrentBuscemi().url;
+
+
+        counterLbl = document.createElement('label');
+        counterLbl.textContent = "Counter: ";
+
+        counterFld = document.createElement('input');
+        counterFld.type = "textField";
+        counterFld.value = octopus.getCurrentBuscemi().clickCount;
+
+        cancelBtn = document.createElement('button');
+        cancelBtn.textContent = "Cancel"
+
+        submitBtn = document.createElement('button');
+        submitBtn.type = 'submit';
+        submitBtn.textContent = 'Submit';
+
+
+        form.appendChild(nameLbl);
+        form.appendChild(nameFld);
+        form.appendChild(urlLbl);
+        form.appendChild(urlFld);
+        form.appendChild(counterLbl);
+        form.appendChild(counterFld);
+        form.appendChild(cancelBtn);
+        form.appendChild(submitBtn);
+
         this.formParent.appendChild(form);
       } else {
         this.formParent.removeChild(form);
