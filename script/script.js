@@ -35,6 +35,8 @@ $(function(){
     };
 
   var octopus = {
+    inAdminMode : false,
+
     init: function() {
       model.currentBuscemi = model.buscemis[0];
       view.init();
@@ -56,11 +58,18 @@ $(function(){
     incrementCounter: function(){
       model.currentBuscemi.clickCount++;
       console.log(this.getCurrentBuscemi.clickCount);
+    },
+
+    switchAdminMode: function(){
+     if(this.inAdminMode){
+       this.inAdminMode = false;
+     } else {
+       this.inAdminMode = true;
+     }
     }
   };
 
   var view = {
-    inAdminMode: false,
 
     init: function(){
       //Vars for HTML elements for later use.
@@ -68,6 +77,12 @@ $(function(){
       this.buscemiName = document.getElementById('buscemi-name');
       this.mainImg = document.getElementById('mainImg');
       this.counter = document.getElementById('counter');
+      this.adminBtn = document.getElementById('adminBtn');
+
+      this.adminBtn.addEventListener('click', function(){
+        console.log(octopus.inAdminMode);
+        octopus.switchAdminMode();
+      });
 
       //Sets main image and texts. Sets event listener for main image.
       var cBuscemi = octopus.getCurrentBuscemi();
