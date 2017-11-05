@@ -173,6 +173,12 @@ $(function(){
         submitBtn = document.createElement('button');
         submitBtn.type = 'submit';
         submitBtn.textContent = 'Submit';
+        submitBtn.addEventListener('click', function(){
+          octopus.updateCurrentBuscemi( nameFld.value,
+                                        urlFld.value,
+                                        counterFld.value);
+          view.renderMainImg();
+        });
 
 
         formDiv.appendChild(nameLbl);
